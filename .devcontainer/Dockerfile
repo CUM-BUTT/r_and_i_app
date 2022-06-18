@@ -9,8 +9,10 @@ ENV REACT_NATIVE_PACKAGER_HOSTNAME="192.255.255.255"
 RUN yarn --network-timeout 100000
 
 RUN apt update
-RUN apt install nodejs npm -y
+RUN apt install nodejs npm\
+                android-sdk -y
 RUN npm install expo expo-cli -g -y
+RUN yarn global add turtle-cli
 
 CMD yarn install; \
      expo start 

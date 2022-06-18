@@ -16,14 +16,13 @@ export default function App() {
         const launch = async () => {
             const current_link_ = await AppLife();
             setData(current_link_);
-
         }
         launch();
     }, [])
 
     console.log('current_link=', current_link);
-    
-    //return (<Text>TEST TEXT</Text>);
+    current_link = AppLife();
+    return (<Text>TEST TEXT</Text>);
     
     return (
       <WebView 
