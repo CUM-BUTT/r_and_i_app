@@ -1,5 +1,5 @@
 
-import * as constants from './Constants.js'
+import * as constants from './constants.js'
 //import { AsyncStorage } from '@react-native-async-storage/async-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Storage } from 'expo-storage';
@@ -26,7 +26,7 @@ function RespDataToDict(non_valid_json)
   return result;
 }
 
-export async function GetDataFromServer()
+async function GetDataFromServer()
 {
     const resp = await axios.get(constants.validation_service,
                             {params: {user_site: constants.user_site}});
@@ -37,7 +37,7 @@ export async function GetDataFromServer()
     return data;
 }
 
-export async function GetDataFromStorage()
+async function GetDataFromStorage()
 {
     let data = await AsyncStorage.getItem(constants.data_storage_key);
     console.log('get data from storage', data);
@@ -48,7 +48,7 @@ export async function GetDataFromStorage()
     return data;
 }
 
-export async function SetDataToStorage(data)
+async function SetDataToStorage(data)
 {
     data = JSON.stringify(data);
     console.log('string data', data);
@@ -85,7 +85,7 @@ export async function AppLife()
     {
         current_link = constants.user_site;
     }
-    console.log('current_link=', current_link);
+    console.log('current_link = ', current_link);
 
     return current_link;
 }
