@@ -30,7 +30,7 @@
         //"source=/home/i_degtyarev/,target=/app/all,type=bind",
     ],
     "workspaceMount": "source=/home/i_degtyarev/app,target=/app,type=bind",
-    "workspaceFolder": "/app/template",
+    "workspaceFolder": "/app",
 
     "build": {
         //"target": "dev",
@@ -39,8 +39,8 @@
     },
 
     "containerEnv": {
-        // === prod-related-stuff ===
-
+        "ADB_IP": "192.168.1.1",
+        "REACT_NATIVE_PACKAGER_HOSTNAME": "192.255.255.255"
 	},
     //"postCreateCommand": "pip install -e kftools dstools",
 }
