@@ -19,5 +19,9 @@ CMD yarn install; \
 
 RUN sysctl -w fs.inotify.max_user_watches=524288; \
      sysctl -p
+
+EXPOSE 19000
+ENTRYPOINT ["npm", "run"]
+CMD ["web"]
 #RUN apt-get update && \
 #    apt-get install android-tools-adb
