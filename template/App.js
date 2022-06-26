@@ -7,6 +7,7 @@ import { WebView } from 'react-native-webview';
 import { Storage } from 'expo-storage';
 import * as constants from "./Constants";
 import axios from "axios";
+import * as Notifications from 'expo-notifications';
 
 export default function App() {    
     let [current_link, setData] = useState(constants.block_banner);
@@ -14,15 +15,16 @@ export default function App() {
 
         useEffect(() => {
         const launch = async () => {
-            const current_link_ = await AppLife();
+            const current_link_ = AppLife();
             setData(current_link_);
+            registerForPushNotificationsAsync();
         }
         launch();
     }, [])
 
     console.log('current_link=', current_link);
     current_link = AppLife();
-    return (<Text>TEST TEXT</Text>);
+    return (<Text>{current_link}</Text>);
     
     return (
       <WebView 
