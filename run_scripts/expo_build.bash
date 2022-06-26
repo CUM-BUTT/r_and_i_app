@@ -1,21 +1,30 @@
 #!/bin/bash
 
-#Сделал app.json
-project_name="template"
-cd $project_name
-ls
-sudo npm install --save react-tinder-card --legacy-peer-deps
-sudo npm install react-native-fs --save
-sudo npm install rn-nodeify
-sudo npm install -g expo-cli
-sudo exp build:android
-#exp build:ios
+PASSWORD=password
+ALIAS=randi_app
+KEYSTORE_FILE=keystore.jks
 
-#exp login cum_butt@mail.ru
-#exp password 14881488
+export EXPO_ANDROID_KEYSTORE_PASSWORD=$PASSWORD
+export EXPO_ANDROID_KEY_PASSWORD=$PASSWORD
+export EXPO_USERNAME=cum_butt
+export EXPO_PASSWORD=$PASSWORD
+export EXPO_ANDROID_KEYSTORE_PASSWORD=$PASSWORD
+export EXPO_ANDROID_KEY_PASSWORD=$PASSWORD
 
-#apple id login cum_butt@mail.ru / jomotechspb@bk.ru
-#apple id password 4su-dcX-h9X-aiu / Ra535353
+export MYAPP_UPLOAD_STORE_FILE=$KEYSTORE_FILE
+export MYAPP_UPLOAD_KEY_ALIAS=$ALIAS
+export MYAPP_UPLOAD_STORE_PASSWORD=$PASSWORD
+export MYAPP_UPLOAD_KEY_PASSWORD=$PASSWORD
 
-Ra535353$
-/home/idegtyarev/PycharmProjects/r_and_i/app_builder/builder/expo/templates/template/1.p12
+turtle setup:android --sdk-version 44.0.5
+
+keytool -genkeypair -v -keystore $KEYSTORE_FILE -alias $ALIAS \
+    -keyalg RSA -keysize 2048 -validity 9125 \
+    -dname "CN=Ilya, OU=development, O=randi, L=Vologda, ST=Vologda, C=RU" 
+
+keytool -genkey -v -keystore $KEYSTORE_FILE -alias $ALIAS \
+ -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Ilya, OU=development, O=randi, L=Vologda, ST=Vologda, C=RU" 
+
+turtle build:android \
+  --keystore-path $KEYSTORE_FILE \
+  --keystore-alias $ALIAS --type apk
